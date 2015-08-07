@@ -31,11 +31,17 @@ module.exports = function(grunt) {
 
     'bower-licensechecker': {
       options: {
-        // warn: true,
-        // directory: null,
-        // outFile: null,
-        // acceptable: [ 'MIT', 'BSD' ],
-        // verbose: false,
+        // TODO: warn: true,
+        // TODO: directory: null,
+        // TODO: outFile: null,
+        acceptable: [ 'MIT', 'BSD' ],
+        // TODO: unacceptable: [ 'MIT', 'BSD' ],
+        // TODO: verbose: false,
+        // TODO: log: {
+        //   outFile: null,
+        //   fullPath: false,
+        // },
+        displayTotal: true
       }
     },
 
