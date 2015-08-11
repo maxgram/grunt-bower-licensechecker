@@ -31,7 +31,7 @@ module.exports = function(grunt) {
 
     'bower-licensechecker': {
       options: {
-        // directory: 'path/bower',
+        directory: 'path/to/bower',
         acceptable: [ 'MIT', 'BSD' ], //TODO: read from external file
         displayTotal: true,
 

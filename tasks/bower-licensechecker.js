@@ -58,9 +58,9 @@ module.exports = function( grunt ) {
 
         }else if(libLicense instanceof Array){
           // Multiple licenses
-
-          // console.log('---> Lincense Array, TODO');
-          // licenseBad
+          for( var i in libLicense ) {
+            ( compareAcceptable(libLicense[i]) ) ? fillArr( licenseGood, packageName, dir ) : fillArr( licenseBad, packageName, dir );
+          }
         }
 
       }catch(e){
