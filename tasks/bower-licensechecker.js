@@ -13,8 +13,9 @@ module.exports = function( grunt ) {
   grunt.task.registerTask( 'bower-licensechecker', 'Check Bower licenses', function() {
     var o = this.options();
 
-    if( !o.directory && grunt.file.isFile( '.bowerrc' ) )
+    if( !o.directory && grunt.file.isFile( '.bowerrc' ) ){
       o.directory = grunt.file.readJSON('.bowerrc').directory;
+    }
 
     var
     licenseGood = [],
@@ -28,8 +29,9 @@ module.exports = function( grunt ) {
 
     compareAcceptable = function(license){
       for( var i in acceptableList ) {
-        if(license.indexOf(acceptableList[i]) != -1)
+        if(license.indexOf(acceptableList[i]) !== -1){
           return true;
+        }
       }
       return false;
     },
@@ -47,7 +49,7 @@ module.exports = function( grunt ) {
 
       try{
         // Has bower.json so the assumption is it's Bower Component
-        libLicense = grunt.file.readJSON(dir + "/bower.json").license;
+        libLicense = grunt.file.readJSON(dir + '/bower.json').license;
 
         if(typeof libLicense === 'undefined'){
           // No License
@@ -55,12 +57,12 @@ module.exports = function( grunt ) {
 
         }else if(typeof libLicense === 'string'){
           // Singe license
-          ( compareAcceptable(libLicense) ) ? fillArr( licenseGood, packageName, dir ) : fillArr( licenseBad, packageName, dir );
+          return ( compareAcceptable(libLicense) ) ? fillArr( licenseGood, packageName, dir ) : fillArr( licenseBad, packageName, dir );
 
         }else if(libLicense instanceof Array){
           // Multiple licenses
           for( var i in libLicense ) {
-            ( compareAcceptable(libLicense[i]) ) ? fillArr( licenseGood, packageName, dir ) : fillArr( licenseBad, packageName, dir );
+            return ( compareAcceptable(libLicense[i]) ) ? fillArr( licenseGood, packageName, dir ) : fillArr( licenseBad, packageName, dir );
           }
         }
       }catch(e){
@@ -71,17 +73,18 @@ module.exports = function( grunt ) {
 
     displayMessage = function(msg, opt){
       var o = opt || {error: true};
-      if(o.error)
+      if(o.error){
         grunt.log.error(msg);
-      else
+      } else {
         grunt.log.ok(msg);
+      }
     };
 
     if(!grunt.file.isDir(bowerDir)){
       grunt.fail.fatal('Please make sure you have right path to bower components folder.');
     }
 
-    grunt.file.expand(bowerDir + "*").forEach( getLicense );
+    grunt.file.expand(bowerDir + '*').forEach( getLicense );
 
     if(o.displayTotal){
       displayMessage('Licenses OK: ' + licenseGood.length, {error: false});
