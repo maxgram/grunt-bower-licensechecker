@@ -46,6 +46,7 @@ module.exports = function( grunt ) {
           packageName = String(dir).replace(bowerDir, '');
 
       try{
+        // Has bower.json so the assumption is it's Bower Component
         libLicense = grunt.file.readJSON(dir + "/bower.json").license;
 
         if(typeof libLicense === 'undefined'){
@@ -62,25 +63,31 @@ module.exports = function( grunt ) {
             ( compareAcceptable(libLicense[i]) ) ? fillArr( licenseGood, packageName, dir ) : fillArr( licenseBad, packageName, dir );
           }
         }
-
       }catch(e){
         // Non-Bower Component
         fillArr( noBowerJson, packageName, dir );
       }
+    },
+
+    displayMessage = function(msg, opt){
+      var o = opt || {error: true};
+      if(o.error)
+        grunt.log.error(msg);
+      else
+        grunt.log.ok(msg);
     };
 
     if(!grunt.file.isDir(bowerDir)){
-      grunt.log.error('Please make sure you have right path to bower components folder.');
-      return;
+      grunt.fail.fatal('Please make sure you have right path to bower components folder.');
     }
 
     grunt.file.expand(bowerDir + "*").forEach( getLicense );
 
     if(o.displayTotal){
-      grunt.log.ok('Licenses OK: ' + licenseGood.length);
-      grunt.log.error('License NOT OK: ' + licenseBad.length);
-      grunt.log.error('License NOT DEFINED: ' + licenseEmpty.length);
-      grunt.log.error('Non-Bower Package: ' + noBowerJson.length);
+      displayMessage('Licenses OK: ' + licenseGood.length, {error: false});
+      displayMessage('License NOT OK: ' + licenseBad.length);
+      displayMessage('License NOT DEFINED: ' + licenseEmpty.length);
+      displayMessage('Non-Bower Package: ' + noBowerJson.length);
     }
 
   });
