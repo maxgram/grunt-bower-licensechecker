@@ -11,8 +11,12 @@
 module.exports = function( grunt ) {
   grunt.file.defaultEncoding = 'utf8';
   grunt.task.registerTask( 'bower-licensechecker', 'Check Bower licenses', function() {
-    var o = this.options(),
+    var o = this.options();
 
+    if( !o.directory && grunt.file.isFile( '.bowerrc' ) )
+      o.directory = grunt.file.readJSON('.bowerrc').directory;
+
+    var
     licenseGood = [],
     licenseBad = [],
     licenseEmpty = [],
@@ -45,25 +49,30 @@ module.exports = function( grunt ) {
         libLicense = grunt.file.readJSON(dir + "/bower.json").license;
 
         if(typeof libLicense === 'undefined'){
-
+          // No License
           fillArr( licenseEmpty, packageName, dir );
 
         }else if(typeof libLicense === 'string'){
-
-          if( compareAcceptable(libLicense) )
-            fillArr( licenseGood, packageName, dir );
-          else
-            fillArr( licenseBad, packageName, dir );
+          // Singe license
+          ( compareAcceptable(libLicense) ) ? fillArr( licenseGood, packageName, dir ) : fillArr( licenseBad, packageName, dir );
 
         }else if(libLicense instanceof Array){
+          // Multiple licenses
+
           // console.log('---> Lincense Array, TODO');
           // licenseBad
         }
 
       }catch(e){
+        // Non-Bower Component
         fillArr( noBowerJson, packageName, dir );
       }
     };
+
+    if(!grunt.file.isDir(bowerDir)){
+      grunt.log.error('Please make sure you have right path to bower components folder.');
+      return;
+    }
 
     grunt.file.expand(bowerDir + "*").forEach( getLicense );
 
