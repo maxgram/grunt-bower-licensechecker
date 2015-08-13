@@ -32,15 +32,14 @@ module.exports = function(grunt) {
     'bower-licensechecker': {
       options: {
         directory: 'path/to/bower',
-        acceptable: [ 'MIT', 'BSD' ], //TODO: read from external file
-        displayTotal: true,
-
-        // TODO: warn: true,
-        // TODO: unacceptable: [ 'MIT', 'BSD' ],
-        // TODO: verbose: false,
-        // TODO: log: {
-        //   outFile: null,
-        // },
+        acceptable: [ 'MIT', 'BSD' ],
+        log: {
+          printNonBower: true,
+          printNoLicense: true,
+          printTotal: true,
+          warn: true,
+          // TODO: outFile: null,
+        },
       }
     },
 
