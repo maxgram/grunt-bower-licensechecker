@@ -13,12 +13,8 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
 
   grunt.initConfig({
-    config: {
-      tsts: '',
-    },
-
     // Syntax
-    jshint: {
+    'jshint': {
       all: [
         'Gruntfile.js',
         'tasks/*.js',
@@ -29,22 +25,31 @@ module.exports = function(grunt) {
       }
     },
 
+    // Settings
     'bower-licensechecker': {
       options: {
         directory: 'path/to/bower',
-        acceptable: [ 'MIT', 'BSD' ],
-        log: {
-          printNonBower: true,
-          printNoLicense: true,
-          printTotal: true,
-          warn: true,
-          // TODO: outFile: null,
-        },
+        acceptable: [ 'MIT', 'BsSD' ],
+        // printTotal: true,
+        // log: {
+        //   outFile: '.licenses',
+        //   nonBower: true,
+        //   noLicense: true,
+        //   allGood: true,
+        //   noGood: true,
+        // },
+        // warn: true,
+        // warn:{
+        //   nonBower: true,
+        //   noLicense: true,
+        //   allGood: true,
+        //   noGood: true
+        // }
       }
     },
 
     // Unit tests.
-    nodeunit: {
+    'nodeunit': {
       tests: ['test/*_test.js']
     },
 
