@@ -26,7 +26,7 @@ License Checker API
 In your project's Gruntfile, add a section named licensechecker to the data object passed into grunt.initConfig().
 
 ```js
-bower-licensechecker: {
+'bower-licensechecker': {
   options: {
     directory: 'path/to/bower',
     acceptable: [ 'MIT', 'BSD' ],
