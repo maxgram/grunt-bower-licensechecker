@@ -92,7 +92,7 @@ Boolean Options:
     Acceptable Values: `Object`, `null`, `false`
     Required param: `outFile`
 
-`outFile` must be specified in order to output file to be made. If no other options are provided the output file will be empty.
+`outFile` must be specified in order for output file to be made. If no other options are provided the output file will be empty.
 
 Boolean Options:
 *    `nonBower`: Writes list of Non-Bower components detected in specified folder (in case `bower.json` doesn't exist)

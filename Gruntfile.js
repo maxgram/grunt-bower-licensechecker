@@ -31,12 +31,12 @@ module.exports = function(grunt) {
         directory: 'path/to/bower',
         acceptable: [ 'MIT', 'BSD' ],
         printTotal: true,
-        warn:{
-          nonBower: true,
-          noLicense: true,
-          allGood: true,
-          noGood: true
-        },
+        // warn:{
+        //   nonBower: true,
+        //   noLicense: true,
+        //   allGood: true,
+        //   noGood: true
+        // },
         // log: {
         //   outFile: '.licenses',
         //   nonBower: true,
