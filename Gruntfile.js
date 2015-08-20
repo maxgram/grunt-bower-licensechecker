@@ -29,8 +29,14 @@ module.exports = function(grunt) {
     'bower-licensechecker': {
       options: {
         directory: 'path/to/bower',
-        acceptable: [ 'MIT', 'BsSD' ],
-        // printTotal: true,
+        acceptable: [ 'MIT', 'BSD' ],
+        printTotal: true,
+        warn:{
+          nonBower: true,
+          noLicense: true,
+          allGood: true,
+          noGood: true
+        },
         // log: {
         //   outFile: '.licenses',
         //   nonBower: true,
@@ -38,13 +44,6 @@ module.exports = function(grunt) {
         //   allGood: true,
         //   noGood: true,
         // },
-        // warn: true,
-        // warn:{
-        //   nonBower: true,
-        //   noLicense: true,
-        //   allGood: true,
-        //   noGood: true
-        // }
       }
     },
 
