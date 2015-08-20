@@ -6,6 +6,11 @@
     "name": "Max Gram",
     "email": "npm@maxgram.com"
   },
+  "description": "Bower License Checker is simple utility to make sure you can reuse someones code on commercial projects.",
+  "main": "Gruntfile.js",
+  "directories": {
+    "test": "tests"
+  },
   "repository": {
     "type": "git",
     "url": "git@github.com:max-gram/grunt-bower-licensechecker.git"
