@@ -23,7 +23,7 @@ License Checker API
 ------------------------------
 ### Overview
 
-In your project's Gruntfile, add a section named licensechecker to the data object passed into grunt.initConfig().
+In your project's Gruntfile, add a section named 'bower-licensechecker' to the data object passed into grunt.initConfig().
 
 ```js
 'bower-licensechecker': {
@@ -76,7 +76,7 @@ If `true`, prints total summary for Good, Bad, Not specified Licenses and if it'
     Default value: `null`
     Acceptable Values: `Object`, `null`, `false`
 
-If `{}` or `true`, it will print generic state of the performed check using `grunt.log.ok` or `grunt.log.warn`. Otherwise, nothing is going to be printed.
+If `{}` or `true`, it will print generic state of the performed check using `grunt.log.ok` or `grunt.log.error`. Otherwise, nothing is going to be printed.
 
 Boolean Options:
 *    `nonBower`: Prints list of Non-Bower components detected in specified folder (in case `bower.json` doesn't exist)
